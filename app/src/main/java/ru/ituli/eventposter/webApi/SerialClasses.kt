@@ -83,11 +83,10 @@ fun List<DateRange>.convertTime(calendar: Calendar): String {
     val startDate = formatter.format(Date(first().start * 1000))
     val endDate = formatter.format(Date(last().end * 1000))
 
-    return "$startDate - $endDate"
-//    when {
-//        first().start < yearBefore && last().end > tenYearsAgo -> "Всегда"
-//        first().start >= yearBefore && last().end > tenYearsAgo -> "c $startDate"
-//        first().start < yearBefore && last().end <= tenYearsAgo -> "до $endDate"
-//        else -> "$startDate - $endDate"
-//    }
+    return when {
+        first().start < yearBefore && last().end > tenYearsAgo -> "Всегда"
+        first().start >= yearBefore && last().end > tenYearsAgo -> "c $startDate"
+        first().start < yearBefore && last().end <= tenYearsAgo -> "до $endDate"
+        else -> "$startDate - $endDate"
+    }
 }
